@@ -53,7 +53,7 @@ async def fetch_missing_data(session, company_code, date_ranges):
         if from_date == to_date == to_date_obj:
             return all_rows
 
-        url = "https://www.mse.mk/en/stats/symbolhistory/alk"
+        url = f"https://www.mse.mk/en/stats/symbolhistory/{company_code}"
         params = {
             'FromDate': from_date,
             'ToDate': to_date,
