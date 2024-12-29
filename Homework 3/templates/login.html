@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        {% if error %}
+        <div class="error flash-message">{{ error }}</div>
+        {% endif %}
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="username">Username/Email</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <label><input type="checkbox" id="show-password"> Show password</label>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <p><a href="#">Forgot password?</a></p>
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+
+        <div class="footer">&copy; Company Name - 2024, Skopje</div>
+    </div>
+
+    <script>
+        document.getElementById('show-password').addEventListener('change', function() {
+            const passwordField = document.getElementById('password');
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    </script>
+</body>
+</html>

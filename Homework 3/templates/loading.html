@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(271deg, #3a0072 0%, #77589d 100%);
+            color: white;
+            height: 100%;
+            display: block;
+            overflow-y: auto;
+            padding-bottom: 50px;
+        }
+
+        /* Main Container */
+        .loading-container {
+            background: #5e11a3;
+            padding: 40px 50px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Spinner Styling */
+        .spinner {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #77589d;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Typography */
+        h3 {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        .time-left {
+            font-size: 20px;
+            margin-top: 20px;
+            color: white;
+            display: none; /* Hidden by default */
+        }
+
+        /* Button Styling */
+        .btn-submit {
+            text-decoration: none;
+            background-color: #5e11a3;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 10px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #430a73;
+            transform: scale(1.05);
+        }
+
+        .btn-submit:active {
+            background-color: #6c25a3;
+            transform: scale(1);
+        }
+
+        .btn-submit:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <h3>Loading...</h3>
+        <div class="spinner" id="spinner"></div>
+        <div class="time-left" id="timeLeftContainer">
+            Estimated time left: <span id="timeLeft"></span>
+        </div>
+        <a href="/start_update" class="btn-submit" id="startUpdate">Begin with updating the database</a>
+        <button class="btn-submit" id="cancelButton">Cancel</button>
+    </div>
+
+    <script>
+        document.getElementById('startUpdate').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            document.getElementById('spinner').style.display = "block";
+            document.getElementById('timeLeftContainer').style.display = "block";
+
+            var timeLeft = 600;
+            var timer = setInterval(function() {
+                timeLeft--;
+                document.getElementById("timeLeft").innerText = timeLeft + " seconds.";
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                }
+            }, 1000);
+
+            setTimeout(function() {
+                window.location.href = "/start_update";
+            }, 500);
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            window.location.href = "/";
+        });
+    </script>
+</body>
+</html>

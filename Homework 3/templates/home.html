@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/home.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Select Company to View Data and Chart</h2>
+        <form action="{{ url_for('company_data') }}" method="POST">
+            <label for="company">Choose a Company</label>
+            <select name="company" id="company" required>
+                {% for company in companies %}
+                    <option value="{{ company }}">{{ company }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+<form action="/update_database" method="POST">
+  <button type="submit">Update Database</button>
+    </form>
+        <p><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></p>
+    </div>
+</body>
+</html>
