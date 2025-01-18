@@ -1,0 +1,63 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      FLASK_ENV: development
+      SECRET_KEY: your_secure_key
+      USER_SERVICE_URL: http://user_management:5001
+      DATA_SERVICE_URL: http://data_loading:5005
+      ANALYSIS_SERVICE_URL: http://analysis:5003
+    volumes:
+      - ./results.csv:/app/results.csv
+    depends_on:
+      - user_management
+      - data_loading
+      - analysis
+    networks:
+      - my_network
+
+
+  user_management:
+    build:
+      context: ./microservices/user_management
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./microservices/user_management:/app
+    networks:
+      - my_network
+
+  data_loading:
+    build:
+      context: ./microservices/data_loading
+      dockerfile: Dockerfile
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./microservices/data_loading:/app
+      - ./results.csv:/app/results.csv
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - my_network
+
+  analysis:
+    build:
+      context: ./microservices/analysis
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./microservices/analysis:/app
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

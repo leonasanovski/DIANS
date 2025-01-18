@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <style>
+        #uploadInput {
+            display: none;
+        }
+        .Profile-Form .btn-primary {
+            background-color: #5231a0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 150px;
+            height: 50px;
+            margin-left: 132px;
+            margin-top: 175px;
+        }
+
+        .Profile-Form .btn-primary:hover {
+            background-color: #6842d1;
+        }
+
+        .Profile-Form .btn-primary:active {
+            background-color: #41247e;
+            transform: scale(0.98);
+        }
+
+    </style>
+    <link rel="stylesheet" href="../static/profile.css">
+</head>
+<body class="Profile-Body">
+<div class="Profile-Container">
+    <div class="Profile-Left">
+        <p>Email - {{ user.email }}</p>
+        <div>
+            <img id="avatar" src="https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png" alt="Avatar" style="width: 100px; height: 100px; background-color: #5231a0; border-radius: 50%;">
+        </div>
+        <p id="profile-resume">{{ resume }}</p>
+    </div>
+
+    <div class="Profile-Right">
+        <h3>Edit Profile Information</h3>
+        <form class="Profile-Form" method="POST" action="{{ url_for('update_profile') }}">
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <div>
+                <label>Phone:</label>
+                <input type="text" name="phone" value="{{ user.phone }}" required>
+            </div>
+            <div>
+                <label>Resume:</label>
+                <textarea name="resume" required>{{ user.resume }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Update Profile
+            </button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

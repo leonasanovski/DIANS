@@ -1,0 +1,116 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #29005A 0%, #77589D 100%); /* Gradient background */
+    color: white; /* White text */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #bda5ff;  /* Light purple container for contrast */
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header */
+h2 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Forms */
+form {
+    margin: 20px 0;
+}
+
+select {
+    padding: 12px;
+    font-size: 16px;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: white;
+    background-color: #3a0072; /* Dark purple background */
+    width: 250px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3a0072; /* Dark purple background */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #5a0072; /* Lighter purple on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Footer Links */
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #bda5ff; /* Light purple on hover */
+}
+
+/* Logout Button Styling */
+.logout-btn {
+    display: inline-block;
+    background-color: #5e11a3; /* Using your theme color for the background */
+    color: white;
+    padding: 14px 40px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+/* Hover state for logout button */
+.logout-btn:hover {
+    background-color: #430a73; /* Darker shade of the background color */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active state for logout button */
+.logout-btn:active {
+    background-color: #6c25a3; /* Lighter shade when clicked */
+    transform: scale(1); /* Reset size when clicked */
+}
+
+/* Focus state for logout button */
+.logout-btn:focus {
+    outline: none; /* Removes the default focus outline */
+}

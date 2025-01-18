@@ -1,0 +1,154 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #3a0072 0%, #77589D 100%);
+    color: white;
+    height: 100%;
+    display: block;
+    overflow-y: auto;
+    padding-bottom: 50px;
+}
+
+/* Main Container */
+.container {
+    background: #5e11a3;
+    padding: 40px 50px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 1400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+}
+
+/* Typography */
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #3a0072;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 3px solid #5e11a3;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table td {
+    background-color: #4e1a76;
+    color: white;
+    font-size: 16px;
+    border-top: 2px solid #5e11a3;
+    transition: background-color 0.3s ease;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #5e11a3;
+}
+
+.table tbody tr:hover {
+    background-color: #6e11a3;
+    cursor: pointer;
+}
+
+/* Table Responsiveness */
+.table-responsive {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Form Styling */
+.form-button,
+.form-submit {
+    background-color: #5e11a3;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover,
+.form-submit:hover {
+    background-color: #3a0072;
+}
+
+/* Button Styling */
+.btn-submit {
+    background-color: #4e1a76;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-submit:hover {
+    background-color: #77589D;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-back {
+    background-color: #3a0072;
+    padding: 15px 25px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-back:hover {
+    background-color: #4e1a76;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Resume Styling */
+.company-resume-container {
+    background-color: #4e1a76;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.company-resume-container p {
+    font-size: 16px;
+    color: white;
+    line-height: 1.6;
+}
+
+/* Pagination Styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+body > div.container.mt-5 > div.row.align-items-center > div.col-6.text-start{
+    width: 25%;
+}

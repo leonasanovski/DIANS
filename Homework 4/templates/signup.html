@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/signup.css">
+</head>
+<body>
+<div class="login-container">
+    <h2>Sign Up</h2>
+    <div class="alert alert-danger" role="alert" style="display: {{ 'block' if 'danger' in get_flashed_messages() else 'none' }};">
+        {% for message in get_flashed_messages(category_filter=['danger']) %}
+            {{ message }}
+        {% endfor %}
+    </div>
+
+    <form action="{{ url_for('signup') }}" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+        <p id="username-error" class="error-message"></p>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="yourname@example.com" required>
+        <p id="email-error" class="error-message"></p>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <!-- Resume input field -->
+        <label for="resume">Resume</label>
+        <textarea id="resume" name="resume" placeholder="Enter your resume" rows="4" required></textarea>
+        <p id="resume-error" class="error-message"></p>
+
+        <button type="submit" class="login-btn">Sign Up</button>
+    </form>
+
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+
+    <div class="footer">&copy; Company name - 2024, Skopje</div>
+</div>
+
+<script>
+    // Function to show error under the username field
+    function showUsernameError(message) {
+        const usernameError = document.getElementById('username-error');
+        usernameError.innerText = message;
+        usernameError.style.display = 'block';
+    }
+
+    // Function to show error under the email field
+    function showEmailError(message) {
+        const emailError = document.getElementById('email-error');
+        emailError.innerText = message;
+        emailError.style.display = 'block';
+    }
+
+    // Function to show error under the resume field
+    function showResumeError(message) {
+        const resumeError = document.getElementById('resume-error');
+        resumeError.innerText = message;
+        resumeError.style.display = 'block';
+    }
+
+    // Show error messages from Flask if they exist
+    {% if username_error %}
+        showUsernameError("{{ username_error }}");
+    {% endif %}
+
+    {% if email_error %}
+        showEmailError("{{ email_error }}");
+    {% endif %}
+
+    {% if resume_error %}
+        showResumeError("{{ resume_error }}");
+    {% endif %}
+</script>
+</body>
+</html>

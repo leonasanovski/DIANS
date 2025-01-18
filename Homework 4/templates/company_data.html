@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company }} Data</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/company_data.css">
+    <style>
+        #index-page {
+            display: none;
+        }
+        .table th, .table td {
+            color: white;
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 16px;
+        }
+        .table tbody td:nth-child(1) {
+            width: 15%;
+        }
+        .table tbody td:nth-child(2) {
+            width: 10%;
+        }
+        .table tbody td:nth-child(3),
+        .table tbody td:nth-child(4),
+        .table tbody td:nth-child(6),
+        .table tbody td:nth-child(7) {
+            width: 8%;
+        }
+        .table tbody td:nth-child(5) {
+            width: 10%;
+        }
+        .table tbody td:nth-child(8),
+        .table tbody td:nth-child(9) {
+            width: 12%;
+        }
+        .table tbody td:nth-child(10) {
+            width: 10%;
+        }
+
+        .table-responsive {
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Additional styling */
+        .company-resume-container {
+            margin-top: 30px;
+            background-color: #4e1a76;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-resume-container p {
+            font-size: 16px;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .graph-container {
+            margin-top: 30px;
+        }
+
+        .analysis-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-logout {
+            background-color: #956eff;
+            color: #fdfdfd;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-logout:hover {
+            background-color: #ffffff;
+            color: #956eff;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Company Analysis</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/profile">Profile</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">
+                        <button class="btn btn-logout">Logout</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <!-- Back to Home Button on the left -->
+        <div class="col-6 text-start">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+        <!-- Title in the center -->
+        <div class="col-6 text-center">
+            <h2 class="mb-4">Data for {{ company }}</h2>
+        </div>
+    </div>
+
+    <!-- Company Resume -->
+    <div class="company-resume-container">
+        <h3 class="text-center mb-3">Company Resume</h3>
+        <p>{{ company }} is a leading financial services firm specializing in stock market analysis, investment strategies, and trading solutions. Founded with the goal of providing individuals and businesses with comprehensive market insights and innovative solutions, Stock {{ company }} has quickly grown to become a trusted name in the financial industry. With a focus on cutting-edge technology, the company combines advanced trading algorithms with expert market research to make informed investment decisions.</p>
+        <p>Over the years, {{ company }} has built a strong track record of success, helping clients achieve significant returns on their investments. The company’s achievements include consistently outperforming market averages, achieving a [specific percentage] growth in portfolio value over the last five years, and providing tailored financial strategies that meet the unique needs of both institutional and individual investors. {{ company }} commitment to excellence is evident in its customer-first approach, which prioritizes transparency, reliability, and superior client service.</p>
+        <p>Additionally, {{ company }} has pioneered innovative tools for stock tracking and analysis, revolutionizing how investors monitor market trends and make informed decisions. The company's collaborative culture fosters a highly skilled team of analysts and traders, continuously pushing the boundaries of financial success. As {{ company }} looks to the future, it remains dedicated to its mission of delivering outstanding value and growth opportunities to clients in an ever-evolving global market.</p>
+    </div>
+
+    <!-- Company Data Title and Dropdown List -->
+    <h3 class="text-center text-sm mb-2" style="font-size: 20px;margin-top: 20px">Company Data</h3>
+    <form method="POST" action="{{ url_for('company_data') }}">
+        <input type="hidden" name="company" value="{{ company }}">
+
+        <!-- Time Span Dropdown -->
+        <div class="row align-items-center mt-4">
+            <div class="col-md-8">
+                <select name="time_span" id="time_span" class="form-select form-select-sm">
+                    <option value="1_day">1 Day</option>
+                    <option value="7_days">1 Week</option>
+                    <option value="30_days">1 Month</option>
+                    <option value="6_months">6 Months</option>
+                    <option value="1_year">1 Year</option>
+                    <option value="5_years">5 Years</option>
+                    <option value="10_years">10 Years</option>
+                </select>
+            </div>
+            <div class="col-md-4 text-center mt-3 mt-md-0">
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Company Data Table -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Дата</th>
+                <th>Цена на последна трансакција</th>
+                <th>Мак.</th>
+                <th>Мин.</th>
+                <th>Просечна цена</th>
+                <th>% пром.</th>
+                <th>Количина</th>
+                <th>Промет во БЕСТ во денари</th>
+                <th>Вкупен промет во денари</th>
+                <th>Компанија</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row['Датум'] }}</td>
+                    <td>{{ row['Цена на последна трансакција'] }}</td>
+                    <td>{{ row['Мак.'] if row['Мак.'] else 'NaN' }}</td>
+                    <td>{{ row['Мин.'] if row['Мин.'] else 'NaN' }}</td>
+                    <td>{{ row['Просечна цена'] }}</td>
+                    <td>{{ row['% пром.'] if row['% пром.'] else 'NaN' }}</td>
+                    <td>{{ row['Количина'] }}</td>
+                    <td>{{ row['Промет во БЕСТ во денари'] }}</td>
+                    <td>{{ row['Вкупен промет во денари'] }}</td>
+                    <td>{{ row['Компанија'] }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-center my-4">
+        <form method="POST" action="{{ url_for('company_data') }}">
+            <input type="hidden" name="company" value="{{ company }}">
+            <input type="hidden" name="time_span" value="{{ time_span }}">
+            <input type="hidden" name="page" value="{{ page - 1 }}" {% if page == 1 %}disabled{% endif %}>
+            <button type="submit" class="btn btn-submit ms-2" {% if page == 1 %}disabled{% endif %}>Previous</button>
+        </form>
+
+        <form method="POST" action="{{ url_for('company_data') }}">
+            <input type="hidden" name="company" value="{{ company }}">
+            <input type="hidden" name="time_span" value="{{ time_span }}">
+            <input type="hidden" name="page" value="{{ page + 1 }}" {% if page == total_pages %}disabled{% endif %}>
+            <button type="submit" class="btn btn-submit ms-2" {% if page == total_pages %}disabled{% endif %}>Next</button>
+        </form>
+    </div>
+
+    <!-- Graph Container -->
+    <div class="graph-container">
+        <h3 class="text-center">Price History Candlestick Chart</h3>
+        <div class="text-center">
+            {{ graph_html|safe }}
+        </div>
+    </div>
+
+</div>
+
+<!-- Analysis -->
+<div class="analysis-container">
+    <h3 class="text-center mb-4">See the ANALYSIS</h3>
+    <form action="{{ url_for('results') }}" method="POST" class="form-inline">
+        <input type="hidden" name="company" value="{{ company }}">
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,631 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #3a0072;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #3a0072;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/*================================LOGIN-FORM-CSS================================*/
+/* styles.static */
+#login-body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Aclonica";
+}
+
+.background {
+    height: 100%;
+    background: linear-gradient(180deg, #29005A 0%, #77589D 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: #f3f3f3;
+    padding: 30px 20px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    color: #5e11a3;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: "Aclonica";
+}
+
+form label {
+    display: block;
+    text-align: left;
+    color: #5e11a3;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: "Aclonica";
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #5e11a3;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.checkbox-container label {
+    font-size: 12px;
+    color: #5e11a3;
+}
+
+a {
+    color: #5e11a3;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.reset-password {
+    color: #8a44e6;
+}
+
+.login-btn {
+    background-color: #5e11a3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #430a73;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #aaa;
+    font-family: "Aclonica";
+}
+
+/*==============================================================================*/
+
+/*===========================SIGN-UP-CSS========================================*/
+/* styles.static */
+/* General input styling remains the same */
+form label {
+
+    display: block;
+    text-align: left;
+    color: #5e11a3;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: "Aclonica";
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #5e11a3;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.login-btn {
+    background-color: #5e11a3;
+    font-family: "Aclonica";
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #430a73;
+}
+
+a {
+    color: #5e11a3;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*==============================================================================*/
+/*==============================HOME-PAGE-CSS===================================*/
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#homepage-body{
+    /*background-color: #0d021a;*/
+    background-color: black;
+}
+
+/* Container */
+.container {
+    /*background-image: url('../LogInDesign/form_rectangle.png');
+    background-size: cover;*/
+    background: linear-gradient(to bottom, #2a0e50, #0d021a);
+    color: white;
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background: linear-gradient(to bottom, #2a0e50, #0d021a);
+    color: white;
+    padding: 20px;
+    margin-right: 5px;
+    border-right: #0d021a 3px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.company-name {
+    font-family: "Aclonica";
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar-btn, .choose-company-btn {
+    transition: background 0.3s ease;
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.choose-company-btn {
+    margin-top: auto;
+}
+
+/* Main Content */
+.main-content {
+    width: 80%;
+    background-image: url('LogInDesign/form_rectangle.png');
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Section */
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-picker input {
+    background: #4a227f;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    background: #e6d5f3;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.sign-in-btn {
+    transition: background 0.3s ease;
+    background: #d6b2ff;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Statistics Section */
+.statistics-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    flex: 1;
+    background: black;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    font-size: 18px;
+}
+
+/* Bottom Section */
+.bottom-section {
+    display: flex;
+    gap: 20px;
+}
+
+.company-resume {
+    flex: 1;
+    background: #4a227f;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.company-resume h3 {
+    margin-bottom: 10px;
+}
+
+.company-resume p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/*==============================================================================*/
+/*===========================CHOOSE-COMPANY-CSS=================================*/
+/* General reset */
+#choose-company-body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Aclonica', sans-serif;
+    background: linear-gradient(135deg, #3a0072, #60009c);
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Centered card design */
+.wrapper-choose-company {
+    background: linear-gradient(180deg, #29005A 0%, #77589D 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: 40px;
+    width: 300px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #5c0099;
+}
+
+/* Heading */
+.card h1 {
+    font-family: "Aclonica";
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Labels and Inputs */
+.label {
+    font-family: "Aclonica";
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+/* Buttons */
+.button, .secondary-button {
+    font-family: "Aclonica";
+    width: 100%;
+    padding: 10px;
+    background: #5c0099;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button:hover, .secondary-button:hover {
+    background: #3a0072;
+}
+
+.secondary-form {
+    margin-top: 20px;
+}
+
+/* Footer text */
+.footer-text {
+
+    font-family: "Aclonica";
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #C2A5E5;
+}
+
+/* Date Input Styling */
+.input[type="date"] {
+    font-family: 'Aclonica', sans-serif;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    color: #5c0099;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/*==============================================================================*/
+/*===========================Profile-CSS========================================*/
+/* General Styles */
+.Profile-Body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #1d1e4e, #3b1e63);
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.Profile-Container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    /*background-color: #2e135a;*/
+    border-radius: 10px;
+    overflow: hidden;
+    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);*/
+}
+
+/* Left Section */
+.Profile-Left {
+    width: 40%;
+    height: 50%;
+    background-color: #BEB9FF;
+    border-radius: 10px;
+    margin-right: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: #0d021a 3px solid;
+}
+
+.Profile-Left h2 {
+    margin: 10px 0;
+    color: #3E0485;
+}
+
+.Profile-Left p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #3E0485;
+    font-family: "Aclonica";
+}
+
+.Profile-Left button {
+    font-family: "Aclonica";
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #5231a0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Profile-Left button:hover {
+    background-color: #6a46c3;
+}
+
+/* Right Section */
+.Profile-Right {
+    width: 60%;
+    padding: 30px;
+    border-radius: 10px;
+    margin-left: 20px;
+    background-color: #BEB9FF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: #0d021a 3px solid;
+}
+
+.Profile-Right h3 {
+    font-family: "Aclonica";
+    margin-bottom: 20px;
+    text-align: center;
+    color: #3E0485;
+}
+
+.Profile-Form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    font-family: "Aclonica", serif;
+}
+
+.Profile-Form label {
+    font-size: 14px;
+}
+
+.Profile-Form input, .Profile-Form textarea {
+    width: 100%;
+
+    padding: 10px;
+    border: #5F00D2 2px solid;
+    background-color: whitesmoke;
+    color: #5F00D2;
+    margin-top: 5px;
+}
+
+.Profile-Form textarea {
+    grid-column: span 2;
+    resize: none;
+    height: 200px;
+}
+
+.Profile-Save {
+    grid-column: span 2;
+    text-align: center;
+}
+
+.Profile-Save button {
+    padding: 10px 30px;
+    background-color: #5231a0;
+    font-family: "Aclonica";
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 65%;
+}
+
+.Profile-Save button:hover {
+    background-color: #6a46c3;
+}
+#username-right-form{
+
+}
+/*==============================================================================*/

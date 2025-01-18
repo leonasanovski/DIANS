@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis - {{ selected_company }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../static/results.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Stock Analysis for {{ selected_company }}</h1>
+
+    <!-- Buttons for selecting periods -->
+    <div class="mt-4 text-center">
+        <button class="btn btn-period" onclick="filterPeriod('1d')">1 Day</button>
+        <button class="btn btn-period" onclick="filterPeriod('7d')">1 Week</button>
+        <button class="btn btn-period" onclick="filterPeriod('1m')">1 Month</button>
+    </div>
+
+    <hr>
+
+    <div class="recommendation-section mt-4">
+        <h3>Technical Analysis for {{ selected_company }}</h3>
+
+        <div class="chart-container d-flex justify-content-around">
+            <canvas id="oscillatorsChart" style="max-width: 45%;"></canvas>
+            <canvas id="movingAveragesChart" style="max-width: 45%;"></canvas>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="text-center mt-4">
+            <h5>
+                Overall Recommendation:
+                {% if recomended_from_calculations == 'Buy' %}
+                    <span class="text-success">Buy</span>
+                {% elif recomended_from_calculations == 'Sell' %}
+                    <span class="text-danger">Sell</span>
+                {% elif recomended_from_calculations == 'Hold' %}
+                    <span class="text-warning">Hold</span>
+                {% else %}
+                    <span class="text-muted">{{ recomended_from_calculations }}</span>
+                {% endif %}
+            </h5>
+        </div>
+    </div>
+
+
+    <div class="alert-warning my-4">
+        <h2>Functional analysis</h2>
+        <h3 style="color: #bda4ff;">
+            {% if nlp == 'positive' %}
+                The stock analysis based on news for {{ selected_company }} indicates
+                <span class="prediction">
+                <strong class="strong-nlp" style="color: green;">{{ nlp }}</strong>
+            </span> trend. <br><strong>Warning: <br></strong> Please note that this is only a prediction and may not be entirely accurate. Do not take this as financial advice too seriously!
+                <span class="fas fa-exclamation-triangle"></span>
+            {% elif nlp == 'neutral' %}
+                The stock analysis based on news for {{ selected_company }} indicates
+                <span class="prediction">
+                <strong class="strong-nlp" style="color: yellow;">{{ nlp }}</strong>
+            </span> trend. <br><strong>Warning: <br></strong> Please note that this is only a prediction and may not be entirely accurate. Do not take this as financial advice too seriously!
+                <span class="fas fa-exclamation-triangle"></span>
+            {% elif nlp == 'negative' %}
+                The stock analysis based on news for {{ selected_company }} indicates
+                <span class="prediction">
+                <strong class="strong-nlp" style="color: red;">{{ nlp }}</strong>
+            </span> trend. <br><strong>Warning: <br></strong> Please note that this is only a prediction and may not be entirely accurate. Do not take this as financial advice too seriously!
+                <span class="fas fa-exclamation-triangle"></span>
+            {% else %}
+                <span class="prediction">
+                <strong class="strong-nlp" style="color: wheat;">{{ nlp }}</strong>
+            </span> <br><strong>Warning: <br></strong> Please note that this is only a prediction and may not be entirely accurate. Do not take this as financial advice too seriously!
+                <span class="fas fa-exclamation-triangle"></span>
+            {% endif %}
+        </h3>
+    </div>
+
+    <div class="alert-warning my-4">
+        <h2>LSTM Prediction</h2>
+        {% if lstm %}
+            <p>The prediction for this company for the stock price for the selected timestamp is -> <span><strong>{{ lstm }}</strong> denars.</span></p>
+        {% else %}
+            <p>The company is not an active trader in the last few years.</p>
+        {% endif %}
+    </div>
+    <div class="back-to-home">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home Page</a>
+    </div>
+</div>
+
+<script>
+    function filterPeriod(period) {
+        const selectedCompany = '{{ selected_company }}';  // This is the current company in the template
+
+        // Trigger a POST request with the selected period and selected company
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '';  // Stay on the current page
+
+        // Add the selected company to the form
+        const companyInput = document.createElement('input');
+        companyInput.type = 'hidden';
+        companyInput.name = 'company';
+        companyInput.value = selectedCompany;
+        form.appendChild(companyInput);
+
+        // Add the period to the form
+        const periodInput = document.createElement('input');
+        periodInput.type = 'hidden';
+        periodInput.name = 'period';  // Send the period to the server
+        periodInput.value = period;
+        form.appendChild(periodInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+    const oscillatorsData = {
+        labels: ['RSI', 'Stochastic', 'CCI', 'Momentum', 'DeMark'],
+        datasets: [{
+            label: 'Oscillators',
+            data: {{ oscillators | tojson }},
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const movingAveragesData = {
+        labels: ['SMA', 'EMA', 'WMA', 'SMMA', 'VWMA'],
+        datasets: [{
+            label: 'Moving Averages',
+            data: {{ moving_averages | tojson }},
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+
+
+    // Render Oscillators Chart
+    const oscillatorsChartCtx = document.getElementById('oscillatorsChart').getContext('2d');
+    new Chart(oscillatorsChartCtx, {
+        type: 'bar',
+        data: oscillatorsData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Render Moving Averages Chart
+    const movingAveragesChartCtx = document.getElementById('movingAveragesChart').getContext('2d');
+    new Chart(movingAveragesChartCtx, {
+        type: 'bar',
+        data: movingAveragesData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Configurations for the charts
+    const config = {
+        type: 'bar',
+        data: {},
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+</script>
+</body>
+</html>
