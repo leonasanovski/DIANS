@@ -1,0 +1,15 @@
+googletrans==4.0.0-rc1
+flask
+flask-cors
+aiohttp
+beautifulsoup4
+pandas
+numpy
+tensorflow
+keras
+scikit-learn
+matplotlib
+requests
+torch
+transformers
+seaborn
